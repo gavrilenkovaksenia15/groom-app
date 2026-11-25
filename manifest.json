@@ -1,0 +1,13 @@
+{
+  "name": "Пушистый стиль — запись к грумеру",
+  "short_name": "Грумер",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f5fb",
+  "theme_color": "#7c5cbf",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

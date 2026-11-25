@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#7c5cbf">
+  <title>Пушистый стиль — запись к грумеру</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <button id="btnBack" class="back hidden" aria-label="Назад">←</button>
+    <h1 id="title">Пушистый стиль</h1>
+    <span id="mode" class="mode"></span>
+  </header>
+
+  <main>
+    <!-- Окно 1. Главное меню -->
+    <section id="screen-home" class="screen">
+      <div class="hero">
+        <div class="hero-pic">🐶</div>
+        <h2>Груминг-салон «<span class="salon-name"></span>»</h2>
+        <p class="muted"><span id="salonAddress"></span><br><span id="salonHours"></span></p>
+      </div>
+      <button class="btn big" data-go="services">✂️ Записаться на услугу</button>
+      <button class="btn big light" data-go="my">📋 Мои записи</button>
+      <button class="btn big ghost" data-go="login">🔑 Вход для грумера</button>
+    </section>
+
+    <!-- Окно 2. Каталог услуг -->
+    <section id="screen-services" class="screen hidden">
+      <p class="step">Шаг 1 из 3. Выберите услугу</p>
+      <div id="serviceList"></div>
+    </section>
+
+    <!-- Окно 3. Выбор даты и времени -->
+    <section id="screen-datetime" class="screen hidden">
+      <p class="step">Шаг 2 из 3. Выберите день и время</p>
+      <div class="card small" id="chosenService"></div>
+      <h3>День</h3>
+      <div id="dayList" class="chips scroll"></div>
+      <h3>Свободное время</h3>
+      <div id="slotList" class="chips wrap"></div>
+      <button id="btnToForm" class="btn" disabled>Далее</button>
+    </section>
+
+    <!-- Окно 4. Данные питомца и владельца -->
+    <section id="screen-form" class="screen hidden">
+      <p class="step">Шаг 3 из 3. Расскажите о питомце</p>
+      <div class="card small" id="summary"></div>
+      <form id="bookingForm" novalidate>
+        <label>Кличка питомца*<input id="fPet" maxlength="30"></label>
+        <label>Вид животного*
+          <select id="fType"><option>Собака</option><option>Кошка</option></select>
+        </label>
+        <label>Порода<input id="fBreed" maxlength="40" placeholder="Например, шпиц"></label>
+        <label>Ваше имя*<input id="fOwner" maxlength="40"></label>
+        <label>Телефон*<input id="fPhone" type="tel" placeholder="+7 900 000-00-00"></label>
+        <label>Комментарий<textarea id="fComment" rows="2" maxlength="200" placeholder="Особенности характера, пожелания"></textarea></label>
+        <p id="formError" class="error"></p>
+        <button class="btn" type="submit" id="btnSubmit">Записаться</button>
+      </form>
+    </section>
+
+    <!-- Окно 5. Запись создана -->
+    <section id="screen-done" class="screen hidden">
+      <div class="hero">
+        <div class="hero-pic">✅</div>
+        <h2>Вы записаны!</h2>
+        <div class="card" id="doneInfo"></div>
+        <p class="muted">Грумер подтвердит запись. Проверить статус можно в разделе «Мои записи».</p>
+      </div>
+      <button class="btn" data-go="home">На главную</button>
+    </section>
+
+    <!-- Окно 6. Мои записи -->
+    <section id="screen-my" class="screen hidden">
+      <label>Введите телефон, указанный при записи
+        <input id="myPhone" type="tel" placeholder="+7 900 000-00-00">
+      </label>
+      <button id="btnFind" class="btn">Найти записи</button>
+      <div id="myList"></div>
+    </section>
+
+    <!-- Окно 7. Вход грумера -->
+    <section id="screen-login" class="screen hidden">
+      <div class="hero">
+        <div class="hero-pic">🔑</div>
+        <h2>Вход для грумера</h2>
+      </div>
+      <label>PIN-код<input id="pin" type="password" inputmode="numeric" maxlength="6"></label>
+      <p id="pinError" class="error"></p>
+      <button id="btnLogin" class="btn">Войти</button>
+    </section>
+
+    <!-- Окно 8. Журнал записей грумера -->
+    <section id="screen-admin" class="screen hidden">
+      <h3>День</h3>
+      <div id="adminDays" class="chips scroll"></div>
+      <div class="stats" id="stats"></div>
+      <div id="adminList"></div>
+      <button class="btn ghost" id="btnLogout">Выйти</button>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+</div>
+
+<!-- Библиотека Firebase (облачная база данных) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<!-- Код приложения -->
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/schedule.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
